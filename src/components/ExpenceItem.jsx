@@ -1,17 +1,20 @@
+import ExpenseDate from './ExpenceDate';
+import ExpenceDetail from './ExpenceDetail';
+
 import './ExpenceItem.css';
 
-function ExpenceItem(props){
-
-    return (
-    
-    <div className="expense-item">
-        <div>{props.title}</div>
-    
-    <div className="expense-item__description">{props.date.toISOString()}</div>
-   
-    <div className="expense-item__price">{props.amount}</div>
-    
-    </div>
-    );
+function ExpenseItem(props) {
+  return (
+  <div className='expense-item'>
+      <ExpenseDate date={props.date} />
+     
+      <div className='expense-item__description'>
+        <h2>{props.title}</h2>
+        <div className='expense-item__price'>${props.amount}</div>
+      </div>
+      <ExpenceDetail  details={props.details}/>
+      </div>
+  );
 }
-export default ExpenceItem;
+
+export default ExpenseItem;
