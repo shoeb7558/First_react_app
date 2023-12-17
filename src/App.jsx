@@ -1,7 +1,7 @@
 // import ExpenseItem from './components/ExpenceItem';
 
 import ExpenseItem from './components/Expence/ExpenceItem';
-
+import NewExpense from './components/Expence/NewExpence';
 import React, { useState } from 'react';
 
 function App() {
@@ -55,7 +55,7 @@ function App() {
 
   return (
     <div>
-      <h2>Let's get started!</h2>
+      <NewExpense />
 
       {expenses.map((expense) => (
         <ExpenseItem
