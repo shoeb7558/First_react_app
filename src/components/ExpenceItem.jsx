@@ -8,7 +8,9 @@ function ExpenseItem(props) {
     props.onRemoveExpense();
 
   }
-
+  const updateAmountHandler = () => {
+    props.onUpdateAmount(); // Call the new function to update the amount
+  };
 
 
   return (
@@ -20,6 +22,7 @@ function ExpenseItem(props) {
         <ExpenceDetail  details={props.details}/>
         <div className='expense-item__price'>${props.amount}</div>
         <button onClick={removeHandler}>Delete</button>
+        <button onClick={updateAmountHandler}>Set $100</button>
       </div>
       
       </div>
