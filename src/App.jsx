@@ -1,9 +1,19 @@
-import ExpenseItem from './components/ExpenceItem';
+
+// import ExpenseItem from './components/ExpenceItem';
+
+import ExpenseItem from './components/Expence/ExpenceItem';
+
+import React, { useState } from 'react';
+
 
 
 
 function App() {
-  const expenses = [
+
+
+  
+
+  const [expenses, setExpenses] = useState( [
     {
       id: 'e1',
       title: 'Toilet Paper',
@@ -11,13 +21,15 @@ function App() {
       amount: 94.12,
       date: new Date(2020, 7, 14),
       details:[ 
-        { detail: 'Toilet Paper' },
-        { detail: 'Monthly expence' }
+
+        { detail: 'Toilet Paper' }
       ],
       
     },
     { id: 'e2', title: 'TV bill', amount: 799.49, date: new Date(2021, 2, 12), details: [
-    { detail: 'TV bill ' },{ detail: 'Monthly expence' }]
+
+    { detail: 'TV bill ' }]
+
   },
     {
       id: 'e3',
@@ -25,8 +37,8 @@ function App() {
       amount: 294.67,
       date: new Date(2021, 2, 28),
       details: [
-        { detail: 'Car Insurance' },
-        { detail: 'mothly expence' }]
+
+        { detail: 'Car Insurance' }]
     },
     {
       id: 'e4',
@@ -37,7 +49,19 @@ function App() {
         { detail: 'New Desk for study' },
         { detail: 'one time ' }]
     },
-  ];
+
+   
+  ]);
+
+
+  const removeExpenseHandler = (expenseId) => {
+    // Filter out the expense with the given ID
+    const updatedExpenses = expenses.filter((expense) => expense.id !== expenseId);
+
+    // Update the state with the filtered array
+    setExpenses(updatedExpenses);
+  };
+
 
   return (
     <div>
@@ -45,11 +69,18 @@ function App() {
       
       {expenses.map((expense) => (
         <ExpenseItem
+
           // key={expense.id}
+
+          key={expense.id}
           title={expense.title}
           amount={expense.amount}
           date={expense.date}
           details={expense.details}
+
+
+          onRemoveExpense={() => removeExpenseHandler(expense.id)} // Pass the expense ID
+
 
 
         />
@@ -58,5 +89,4 @@ function App() {
     </div>
   );
 }
-
 export default App;
