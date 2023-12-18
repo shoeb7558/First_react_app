@@ -5,39 +5,15 @@ import NewExpense from './components/Expence/NewExpence';
 import React, { useState } from 'react';
 
 function App() {
-  const [expenses, setExpenses] = useState([
-    {
-      id: 'e1',
-      title: 'Toilet Paper',
-      amount: 94.12,
-      date: new Date(2020, 7, 14),
-      details: [{ detail: 'Toilet Paper' }],
-    },
-    {
-      id: 'e2',
-      title: 'TV bill',
-      amount: 799.49,
-      date: new Date(2021, 2, 12),
-      details: [{ detail: 'TV bill ' }],
-    },
-    {
-      id: 'e3',
-      title: 'Car Insurance',
-      amount: 294.67,
-      date: new Date(2021, 2, 28),
-      details: [{ detail: 'Car Insurance' }],
-    },
-    {
-      id: 'e4',
-      title: 'New Desk (Wooden)',
-      amount: 450,
-      date: new Date(2021, 5, 12),
-      details: [
-        { detail: 'New Desk for study' },
-        { detail: 'one time ' },
-      ],
-    },
-  ]);
+  const [expenses, setExpenses] = useState([]);
+
+  const addExpenseHandler = (expenseData) => {
+    setExpenses((prevExpenses) => [
+      ...prevExpenses,
+      { ...expenseData, id: Math.random().toString() },
+    ]);
+  };
+  
 
   const updateExpenseAmountHandler = (expenseId) => {
     // Find the expense with the given ID
@@ -55,7 +31,10 @@ function App() {
 
   return (
     <div>
-      <NewExpense />
+      
+      
+      <NewExpense addExpenseHandler={addExpenseHandler} />
+      
 
       {expenses.map((expense) => (
         <ExpenseItem
