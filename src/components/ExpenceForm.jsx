@@ -36,6 +36,7 @@ const ExpenceForm = (props) => {
     setEnteredDate('')
     console.log(expenseData);
     props.onSaveExpence(expenseData);
+    props.addExpenseHandler(expenseData);
   };
 
   return (
