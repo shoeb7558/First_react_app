@@ -7,12 +7,14 @@ import React, { useState } from 'react';
 
 function App() {
   const [expenses, setExpenses] = useState([]);
+  const [isFormVisible, setIsFormVisible] = useState(false);
 
   const addExpenseHandler = (expenseData) => {
     setExpenses((prevExpenses) => [
       ...prevExpenses,
       { ...expenseData, id: Math.random().toString() },
     ]);
+    setIsFormVisible(false); 
   };
   
 
@@ -39,10 +41,20 @@ function App() {
   const filteredExpenses = expenses.filter(
     (expense) => expense.date.getFullYear().toString() === filteredYear
   );
+  const toggleFormVisibility = () => {
+    setIsFormVisible(!isFormVisible);
+  };
 
   return (
     <div>
-      <NewExpense addExpenseHandler={addExpenseHandler} />
+      {isFormVisible ? (
+        <NewExpense addExpenseHandler={addExpenseHandler} />
+      ) : (
+        <div style={{backgroundColor:'#a892ee',width:'70%',height:'150px', marginLeft:'15%',borderRadius:'20px',justifyContent:'center',alignItems:'center',display:'flex'}}>
+        <button style={{ backgroundColor: '#40005d', color:'white',paddingTop:'20px',paddingBottom:'20px',paddingLeft:'30px',paddingRight:'30px', borderRadius:'10px', borderBlock:'#40005d'}} onClick={toggleFormVisibility}>Add Expense</button>
+        </div>
+      )}
+      
       <ExpenceFilter selected={filteredYear} onChangeFilter={filterChangeHandler} />
       
       {filteredExpenses.length === 0 ? (
