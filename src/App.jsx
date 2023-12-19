@@ -42,12 +42,13 @@ function App() {
 
   return (
     <div>
-      <ExpenceFilter selected={filteredYear} onChangeFilter={filterChangeHandler} />
+      
       
       <NewExpense addExpenseHandler={addExpenseHandler} />
-      
-
-      {filteredExpenses.map((expense) => (
+      <ExpenceFilter selected={filteredYear} onChangeFilter={filterChangeHandler} />
+     
+       {filteredExpenses.length === 0 ? (<p style={{ color: '#40005d', fontStyle: 'italic', fontSize:'larger',marginLeft:'15%',marginTop:'-50px',  }}>no data found.</p>):(
+      filteredExpenses.map((expense) => (
         <ExpenseItem
           key={expense.id}
           title={expense.title}
@@ -57,7 +58,8 @@ function App() {
           onRemoveExpense={() => removeExpenseHandler(expense.id)}
           onUpdateAmount={() => updateExpenseAmountHandler(expense.id)}
         />
-      ))}
+      ))
+      )}
     </div>
   );
 }
