@@ -42,23 +42,29 @@ function App() {
 
   return (
     <div>
-      
-      
       <NewExpense addExpenseHandler={addExpenseHandler} />
       <ExpenceFilter selected={filteredYear} onChangeFilter={filterChangeHandler} />
-     
-       {filteredExpenses.length === 0 ? (<p style={{ color: '#40005d', fontStyle: 'italic', fontSize:'larger',marginLeft:'15%',marginTop:'-50px',  }}>no data found.</p>):(
-      filteredExpenses.map((expense) => (
-        <ExpenseItem
-          key={expense.id}
-          title={expense.title}
-          amount={expense.amount}
-          date={expense.date}
-          details={expense.details}
-          onRemoveExpense={() => removeExpenseHandler(expense.id)}
-          onUpdateAmount={() => updateExpenseAmountHandler(expense.id)}
-        />
-      ))
+      
+      {filteredExpenses.length === 0 ? (
+        <p style={{ color: '#40005d', fontStyle: 'italic', fontSize: 'larger', marginLeft: '15%', marginTop: '-50px' }}>
+          No data found.
+        </p>
+      ) : filteredExpenses.length === 1 ? (
+        <p style={{ color: '#40005d', fontStyle: 'italic', fontSize: 'larger', marginLeft: '15%', marginTop: '-50px' }}>
+          Single element, add more.
+        </p>
+      ) : (
+        filteredExpenses.map((expense) => (
+          <ExpenseItem
+            key={expense.id}
+            title={expense.title}
+            amount={expense.amount}
+            date={expense.date}
+            details={expense.details}
+            onRemoveExpense={() => removeExpenseHandler(expense.id)}
+            onUpdateAmount={() => updateExpenseAmountHandler(expense.id)}
+          />
+        ))
       )}
     </div>
   );
